@@ -8,6 +8,6 @@ export interface RootState {
 
 export default function createRootReducer({ history }: { history: History }) {
   return combineReducers({
-    router: connectRouter(history),
+    router: connectRouter(history)
   });
 }
