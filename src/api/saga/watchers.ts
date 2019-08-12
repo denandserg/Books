@@ -1,5 +1,3 @@
 export default function* watchersSaga() {
-  yield doTask();
+  yield 'watch';
 }
-
-function doTask() {}
