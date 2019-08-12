@@ -4,8 +4,8 @@ import { ConnectedRouter } from 'connected-react-router';
 import React, { ReactElement } from 'react';
 import { Provider } from 'react-redux';
 
-import AppRoutes from './routes';
 import configureStore, { history } from '../redux/configureStore';
+import AppRoutes from './routes';
 
 export default AppRoot;
 
