@@ -1,6 +1,6 @@
+import { DatePicker } from 'antd';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import { DatePicker } from 'antd';
 
 import RoutePaths from './paths';
 import sm from './styles.module.scss';

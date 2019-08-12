@@ -1,10 +1,11 @@
-import React, { ComponentType } from 'react';
 import {
   captureException,
   init,
   showReportDialog,
   withScope
 } from '@sentry/browser';
+import React, { ComponentType } from 'react';
+
 import { version } from '../../../package.json';
 
 const {
