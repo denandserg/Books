@@ -8,6 +8,7 @@
     "yarn": ">=1.13.0"
   },
   "dependencies": {
+    "@firebase/database": "^0.4.12",
     "@sentry/browser": "^5.2.1",
     "@types/axios": "^0.14.0",
     "@types/classnames": "^2.2.9",
@@ -26,6 +27,7 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.4.0",
+    "firebase": "^6.3.5",
     "history": "^4.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
