@@ -1,0 +1,242 @@
+@import '../../../assets/styles/variables/index';
+
+.Button__Clean {
+  display: inline-block;
+  box-sizing: content-box;
+  max-width: 100%;
+
+  padding: 0;
+
+  color: inherit;
+  font-size: 1em;
+  text-align: left;
+  vertical-align: middle;
+
+  background-color: transparent;
+  border: none;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-height: 2.5em * (1 / 0.75);
+
+  padding: 0;
+
+  font-weight: bold;
+  font-size: 0.75em;
+
+  font-family: 'samsungsharpsans-bold', sans-serif;
+
+  background: none;
+
+  border: none;
+  border-radius: 1.25em * (1 / 0.75);
+  cursor: pointer;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &:disabled {
+    opacity: 0.7;
+  }
+
+  &.Button__ShapeRounded {
+    padding: 0 3em;
+
+    border-radius: 1.25em * (1 / 0.75);
+  }
+
+  &.Button__ShapeSquare {
+    min-width: 2.5em * (1 / 0.75);
+
+    border-radius: toem(6);
+  }
+}
+
+.Button__Clean.Button__Fluid,
+.Button.Button__Fluid {
+  width: 100%;
+
+  padding: {
+    right: 0;
+    left: 0;
+  };
+}
+
+.Button__VariantPrimary,
+.Button__VariantSpecial,
+.Button__VariantSimple,
+.Button__VariantStandard,
+.Button__VariantLinklike,
+.Button__VariantBorderless {
+  letter-spacing: 0.5px;
+
+  outline: none;
+}
+
+.Button__VariantPrimary {
+  color: $colorWhite;
+
+  border: 1px solid $colorBgnPrimary;
+  box-shadow: 0 4px 6px 0 rgba(220, 53, 89, 0.3);
+
+  &,
+  &.Button:disabled {
+    background-color: $colorBgnPrimary;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: darken($colorBgnPrimary, 10);
+  }
+
+  &:active {
+    background-color: darken($colorBgnPrimary, 20);
+  }
+}
+
+.Button__VariantSpecial {
+  color: $colorWhite;
+
+  &,
+  &.Button:disabled {
+    background-color: $colorEasternBlue;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: $colorTealish;
+  }
+
+  &:active {
+    background-color: $colorBlueGreen;
+  }
+}
+
+.Button__VariantSimple {
+  min-height: toem(32);
+
+  font-size: 1em;
+  font-family: $fontAvenirHeavy;
+
+  //padding-top: toem(2);
+
+  &.Button:disabled {
+    color: $colorOsloGray;
+
+    background-color: $colorWhiteDarken;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: $colorPaleGrey;
+  }
+
+  &:active {
+    background-color: $colorWhiteDarken;
+  }
+
+  &.Button__ShapeSquare {
+    font-size: 0.75em;
+  }
+}
+
+.Button__VariantStandard {
+  box-sizing: border-box;
+
+  color: $almostBlack;
+
+  border: 1px solid $baseBorderColor;
+
+  &.Button__VariantDestructive {
+    color: $colorCoral;
+  }
+
+  &,
+  &.Button:disabled {
+    background-color: $colorWhite;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: darken($colorWhite, 10);
+  }
+
+  &:active {
+    background-color: darken($colorWhite, 20);
+  }
+}
+
+.Button__VariantLinklike {
+  &,
+  &.Button:disabled {
+    color: $colorOsloGray;
+  }
+
+  &:focus,
+  &:hover {
+    color: darken($colorOsloGray, 10);
+  }
+
+  &:active {
+    color: darken($colorOsloGray, 20);
+  }
+}
+
+.Button__VariantBorderless {
+  color: $almostBlack;
+
+  &,
+  &.Button:disabled {
+    background-color: $colorPaleGrey;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: darken($colorPaleGrey, 10);
+  }
+
+  &:active {
+    background-color: darken($colorPaleGrey, 20);
+  }
+}
+
+.Button_Icon {
+  font-size: 1.5em;
+}
+
+.Button__IconPre {
+  padding: {
+    right: 1.625em;
+    left: 1.125em;
+  };
+
+  .Button_Icon__Pre {
+    margin-right: 0.5em;
+  }
+}
+
+.Button__IconPost {
+  padding: {
+    right: 1.125em;
+    left: 1.625em;
+  };
+
+  .Button_Icon__Post {
+    margin-left: 0.5em;
+  }
+}
+
+.Button__IconPre.Button__IconPost {
+  padding: {
+    right: 1.125em;
+    left: 1.125em;
+  };
+}

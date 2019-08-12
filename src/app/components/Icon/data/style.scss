@@ -1,0 +1,385 @@
+@import "variables";
+
+@font-face {
+  font-weight: normal;
+  font-family: '#{$icomoon-font-family}';
+  font-style: normal;
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?eifw59') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?eifw59') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?eifw59##{$icomoon-font-family}') format('svg');
+}
+
+.icon {
+  font-weight: normal;
+
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  text-transform: none;
+  speak: none;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-apartment {
+  &::before {
+    content: $icon-apartment;
+  }
+}
+
+.icon-arrow-right {
+  &::before {
+    content: $icon-arrow-right;
+  }
+}
+
+.icon-arrow-simple-left {
+  &::before {
+    content: $icon-arrow-simple-left;
+  }
+}
+
+.icon-arrow-simple-right {
+  &::before {
+    content: $icon-arrow-simple-right;
+  }
+}
+
+.icon-arrow-top-square {
+  &::before {
+    content: $icon-arrow-top-square;
+  }
+}
+
+.icon-bath {
+  &::before {
+    content: $icon-bath;
+  }
+}
+
+.icon-bed {
+  &::before {
+    content: $icon-bed;
+  }
+}
+
+.icon-bell {
+  &::before {
+    content: $icon-bell;
+  }
+}
+
+.icon-calendar {
+  &::before {
+    content: $icon-calendar;
+  }
+}
+
+.icon-camera {
+  &::before {
+    content: $icon-camera;
+  }
+}
+
+.icon-check {
+  &::before {
+    content: $icon-check;
+  }
+}
+
+.icon-checkbox-checked {
+  &::before {
+    content: $icon-checkbox-checked;
+  }
+}
+
+.icon-checkbox-unchecked {
+  &::before {
+    content: $icon-checkbox-unchecked;
+  }
+}
+
+.icon-checked-circle {
+  &::before {
+    content: $icon-checked-circle;
+  }
+}
+
+.icon-circle-cross {
+  &::before {
+    content: $icon-circle-cross;
+  }
+}
+
+.icon-clock {
+  &::before {
+    content: $icon-clock;
+  }
+}
+
+.icon-commercial {
+  &::before {
+    content: $icon-commercial;
+  }
+}
+
+.icon-cross {
+  &::before {
+    content: $icon-cross;
+  }
+}
+
+.icon-cross-circle {
+  &::before {
+    content: $icon-cross-circle;
+  }
+}
+
+.icon-dollar-circle {
+  &::before {
+    content: $icon-dollar-circle;
+  }
+}
+
+.icon-edit {
+  &::before {
+    content: $icon-edit;
+  }
+}
+
+.icon-elevator {
+  &::before {
+    content: $icon-elevator;
+  }
+}
+
+.icon-exclaim-triangle {
+  &::before {
+    content: $icon-exclaim-triangle;
+  }
+}
+
+.icon-eye {
+  &::before {
+    content: $icon-eye;
+  }
+}
+
+.icon-furniture {
+  &::before {
+    content: $icon-furniture;
+  }
+}
+
+.icon-garden {
+  &::before {
+    content: $icon-garden;
+  }
+}
+
+.icon-gps {
+  &::before {
+    content: $icon-gps;
+  }
+}
+
+.icon-grear {
+  &::before {
+    content: $icon-grear;
+  }
+}
+
+.icon-grill {
+  &::before {
+    content: $icon-grill;
+  }
+}
+
+.icon-gym {
+  &::before {
+    content: $icon-gym;
+  }
+}
+
+.icon-heart {
+  &::before {
+    content: $icon-heart;
+  }
+}
+
+.icon-heart-filled {
+  &::before {
+    content: $icon-heart-filled;
+  }
+}
+
+.icon-hottub {
+  &::before {
+    content: $icon-hottub;
+  }
+}
+
+.icon-house {
+  &::before {
+    content: $icon-house;
+  }
+}
+
+.icon-land {
+  &::before {
+    content: $icon-land;
+  }
+}
+
+.icon-location {
+  &::before {
+    content: $icon-location;
+  }
+}
+
+.icon-map {
+  &::before {
+    content: $icon-map;
+  }
+}
+
+.icon-minus {
+  &::before {
+    content: $icon-minus;
+  }
+}
+
+.icon-office {
+  &::before {
+    content: $icon-office;
+  }
+}
+
+.icon-parking {
+  &::before {
+    content: $icon-parking;
+  }
+}
+
+.icon-paw {
+  &::before {
+    content: $icon-paw;
+  }
+}
+
+.icon-pencil {
+  &::before {
+    content: $icon-pencil;
+  }
+}
+
+.icon-phone {
+  &::before {
+    content: $icon-phone;
+  }
+}
+
+.icon-pin {
+  &::before {
+    content: $icon-pin;
+  }
+}
+
+.icon-plus {
+  &::before {
+    content: $icon-plus;
+  }
+}
+
+.icon-pool {
+  &::before {
+    content: $icon-pool;
+  }
+}
+
+.icon-radio-checked {
+  &::before {
+    content: $icon-radio-checked;
+  }
+}
+
+.icon-radio-unchecked {
+  &::before {
+    content: $icon-radio-unchecked;
+  }
+}
+
+.icon-radius {
+  &::before {
+    content: $icon-radius;
+  }
+}
+
+.icon-search {
+  &::before {
+    content: $icon-search;
+  }
+}
+
+.icon-select-closed {
+  &::before {
+    content: $icon-select-closed;
+  }
+}
+
+.icon-select-open {
+  &::before {
+    content: $icon-select-open;
+  }
+}
+
+.icon-share {
+  &::before {
+    content: $icon-share;
+  }
+}
+
+.icon-square {
+  &::before {
+    content: $icon-square;
+  }
+}
+
+.icon-terrace {
+  &::before {
+    content: $icon-terrace;
+  }
+}
+
+.icon-upload {
+  &::before {
+    content: $icon-upload;
+  }
+}
+
+.icon-user {
+  &::before {
+    content: $icon-user;
+  }
+}
+
+.icon-userpick {
+  &::before {
+    content: $icon-userpick;
+  }
+}
