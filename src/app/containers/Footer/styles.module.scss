@@ -1,0 +1,80 @@
+@import "../../../assets/styles/variables/index";
+
+.Footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: toem(56);
+  padding: 0 4.5em;
+
+  background-color: $colorWhite;
+
+  .Footer_BorderedContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 3.5em;
+
+    border-top: 1px solid $colorBlack10;
+
+    .Footer_LeftGroup {
+      display: flex;
+      align-items: center;
+
+      .Footer_Copyright,
+      .Footer_TermsConditions,
+      .Footer_Policy {
+        color: $colorOsloGray;
+        font-size: toem(14);
+        font-family: $fontAvenirRoman;
+      }
+
+      .Footer_TermsConditions {
+        margin-left: 3.3em;
+
+        &:hover {
+          color: $almostBlack;
+        }
+      }
+
+      .Footer_Policy {
+        margin-left: 1.5em;
+
+        &:hover {
+          color: $almostBlack;
+        }
+      }
+    }
+
+    .Footer_RightGroup {
+      display: flex;
+      align-items: center;
+
+      .Footer_RightGroupItem {
+        display: flex;
+        align-items: center;
+
+        &::before {
+          display: block;
+          align-self: stretch;
+          width: 1px;
+          min-height: 100%;
+
+          margin: 0 1em;
+
+          background-color: $colorBlack10;
+
+          content: '';
+        }
+
+        &:first-of-type {
+          &::before {
+            content: none;
+          }
+        }
+      }
+    }
+  }
+}
