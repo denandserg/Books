@@ -1,0 +1,29 @@
+@import "../variables/index";
+
+.redux-toastr.babilonia-toastr {
+  .toastr {
+    color: $almostBlack;
+    font-size: 1em;
+
+    background-color: white;
+    opacity: 1;
+
+    .rrt-left-container {
+      display: none;
+    }
+
+    .rrt-middle-container {
+      width: 100%;
+      margin: 0;
+      padding: 1em;
+
+      .rrt-title {
+        display: none;
+      }
+
+      .rrt-text {
+        display: none;
+      }
+    }
+  }
+}

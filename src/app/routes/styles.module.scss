@@ -1,0 +1,43 @@
+@import '~node-sass/../../src/assets/styles/variables/index';
+
+.AppRoutes {
+  position: relative;
+  z-index: $layerHeader;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  .AppRoutes_Header,
+  .AppRoutes_Main,
+  .AppRoutes_Footer {
+  }
+
+  .AppRoutes_Main {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: stretch;
+    min-width: 100%;
+  }
+
+  .AppRoutes_Header,
+  .AppRoutes_Footer {
+    position: sticky;
+    z-index: $layerFooter;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .AppRoutes_Header {
+    top: 0;
+  }
+
+  .AppRoutes_Footer {
+    bottom: 0;
+  }
+}

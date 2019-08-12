@@ -1,0 +1,9 @@
+$basePx: 16;
+
+@function toem($px) {
+  @return $px / $basePx * 1em;
+}
+
+@function torem($px) {
+  @return $px / $basePx * 1rem;
+}

@@ -1,0 +1,61 @@
+$avenir-font-path: '../fonts/avenir/AvenirLTStd';
+
+@font-face {
+  font-family: AvenirLTStd-Black;
+  src: url('#{$avenir-font-path}-Black.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-BlackOblique;
+  src: url('#{$avenir-font-path}-BlackOblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-Book;
+  src: url('#{$avenir-font-path}-Book.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-BookOblique;
+  src: url('#{$avenir-font-path}-BookOblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-Heavy;
+  src: url('#{$avenir-font-path}-Heavy.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-HeavyOblique;
+  src: url('#{$avenir-font-path}-HeavyOblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-Light;
+  src: url('#{$avenir-font-path}-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-LightOblique;
+  src: url('#{$avenir-font-path}-LightOblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-Medium;
+  src: url('#{$avenir-font-path}-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-MediumOblique;
+  src: url('#{$avenir-font-path}-MediumOblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-Oblique;
+  src: url('#{$avenir-font-path}-Oblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: AvenirLTStd-Roman;
+  src: url('#{$avenir-font-path}-Roman.otf') format('opentype');
+}

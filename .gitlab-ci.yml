@@ -1,0 +1,146 @@
+image: node:8
+
+variables:
+  REACT_APP_ENV_NAME: $CI_ENVIRONMENT_NAME
+  REPO_HOST: gitlab.yalantis.com
+
+stages:
+  - setup
+  - code_quality
+  - testing
+  - semver
+  - deployment
+
+dependencies:installation:
+  stage: setup
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - yarn --prefer-offline --no-progress --non-interactive --frozen-lockfile
+  tags:
+    - web-ci
+
+lint:scripts:
+  stage: code_quality
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - yarn run lint:scripts:check --max-warnings 0
+  only:
+    changes:
+      - src/**/*.{ts,tsx}
+  tags:
+    - web-ci
+
+lint:styles:
+  stage: code_quality
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - yarn run lint:styles:check
+  only:
+    changes:
+      - src/**/*.{css,scss}
+  tags:
+    - web-ci
+
+unit:testing:
+  stage: testing
+  cache:
+    paths:
+      - node_modules/
+  only:
+    changes:
+      - src/**/*.{ts,tsx}
+  script:
+    - yarn test
+  tags:
+    - web-ci
+
+.semver_script: &semver_script
+  stage: semver
+  when: manual
+  only:
+    - master
+  except:
+    refs:
+      - /^v\d+\.\d+.\d+$/
+  tags:
+    - web-ci
+  script:
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - ssh-keyscan $REPO_HOST >> ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - git remote set-url --push origin git@$REPO_HOST:$CI_PROJECT_PATH.git
+    - git config --local --replace-all user.email "noreply@yalantis.com"
+    - git config --local --replace-all user.name "Gitlab CI"
+    - git checkout $CI_COMMIT_REF_NAME
+    - git reset --hard origin/$CI_COMMIT_REF_NAME
+    - npm version $SEMVER_LEVEL
+    - git push -u origin $CI_COMMIT_REF_NAME --tags
+
+semver:minor:
+  <<: *semver_script
+  variables:
+    SEMVER_LEVEL: minor
+
+semver:patch:
+  <<: *semver_script
+  variables:
+    SEMVER_LEVEL: patch
+
+.deploy_script: &deploy_script
+  cache:
+    paths:
+      - node_modules/
+  stage: deployment
+  script:
+    - yarn run build
+    - yarn run deploy
+  tags:
+    - web-ci
+
+deploy:dev:
+  <<: *deploy_script
+  variables:
+    AWS_S3_HOST_BUCKET_NAME: $AWS_S3_HOST_BUCKET_NAME__DEV
+    REACT_APP_API_BASE: $REACT_APP_API_BASE__DEV
+  environment:
+    name: dev
+    url: http://$AWS_S3_HOST_BUCKET_NAME.s3-website.us-east-1.amazonaws.com/
+  only:
+    - develop
+
+deploy:qa:
+  <<: *deploy_script
+#  when: manual # Uncomment to turn on manual deploy to QA
+  variables:
+    AWS_S3_HOST_BUCKET_NAME: $AWS_S3_HOST_BUCKET_NAME__QA
+    REACT_APP_API_BASE: $REACT_APP_API_BASE__QA
+  environment:
+    name: qa
+    url: http://$AWS_S3_HOST_BUCKET_NAME.s3-website.us-east-1.amazonaws.com/
+  only:
+    refs:
+      - /^v\d+\.\d+.\d+$/
+    changes:
+      - package.json
+
+deploy:stage:
+  <<: *deploy_script
+  when: manual
+  variables:
+    AWS_S3_HOST_BUCKET_NAME: $AWS_S3_HOST_BUCKET_NAME__STAGE
+    REACT_APP_API_BASE: $REACT_APP_API_BASE__STAGE
+  environment:
+    name: stage
+    url: http://$AWS_S3_HOST_BUCKET_NAME.s3-website.us-east-1.amazonaws.com/
+  only:
+    refs:
+      - /^v\d+\.\d+.\d+$/
+    changes:
+      - package.json

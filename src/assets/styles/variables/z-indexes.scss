@@ -1,0 +1,8 @@
+$layerHeader: 2;
+$layerFooter: $layerHeader;
+
+$layerPopupTrigger: $layerFooter + 2;
+$layerPopupOverlay: $layerPopupTrigger + 2;
+
+$layerModalOverlay: $layerPopupOverlay + 2;
+$layerModalContent: $layerModalOverlay + 2;

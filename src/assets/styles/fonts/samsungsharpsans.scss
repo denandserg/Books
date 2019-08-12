@@ -1,0 +1,16 @@
+$samsungsharpsans-font-path: '../fonts/samsungsharpsans/samsungsharpsans';
+
+@font-face {
+  font-family: samsungsharpsans;
+  src: url('#{$samsungsharpsans-font-path}.otf') format('opentype');
+}
+
+@font-face {
+  font-family: samsungsharpsans-bold;
+  src: url('#{$samsungsharpsans-font-path}-bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: samsungsharpsans-medium;
+  src: url('#{$samsungsharpsans-font-path}-medium.otf') format('opentype');
+}

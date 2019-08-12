@@ -1,0 +1,29 @@
+@import "variables/index";
+
+.pageHeader {
+  padding-bottom: 1.5em;
+
+  font-size: 1.75em;
+  font-family: $fontSamsungSharpSansBold;
+}
+
+.pageSubheader {
+  padding-bottom: 1.1em;
+
+  font-size: 1.25em;
+  font-family: $fontSamsungSharpSansBold;
+}
+
+.modalHeader {
+  padding-bottom: 0.5em;
+
+  color: $almostBlack;
+  font-family: $fontSamsungSharpSansBold;
+}
+
+.fieldLabel {
+  padding-bottom: 0.7em;
+
+  color: $colorOsloGray;
+  font-size: 0.865em;
+}

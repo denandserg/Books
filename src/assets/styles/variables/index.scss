@@ -1,0 +1,13 @@
+@import "colors";
+@import "mixins";
+@import "fonts";
+@import "functions";
+@import "z-indexes";
+
+$borderRadius: 0.25em;
+$borderRadiusCard: 0.625em;
+
+$commonShadow: 0 0 4px rgba(0, 0, 0, 0.33);
+
+$headerHeight: toem(72);
+$footerHeight: toem(57);
