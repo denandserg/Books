@@ -33,13 +33,27 @@ function _SignInPage(props: Props) {
       .then(OK => (OK ? history.push(RoutePaths._()) : null));
   }
 
+  async function registration(data: User) {
+    await fireBase
+      .auth()
+      .createUserWithEmailAndPassword(data.email, data.password)
+      .then(OK => (OK ? history.push(RoutePaths._()) : null));
+  }
+
   return (
     <CommonPageLayout
       customMainWrap={Boolean(true)}
       renderMainContent={() => (
         <>
           <Header />
-          <UserForm form="USER_FORM" onSubmit={values => login(values)} />
+          <UserForm
+            form="USER_FORM"
+            onSubmit={values =>
+              history.location.pathname === RoutePaths.SignIn._()
+                ? login(values)
+                : registration(values)
+            }
+          />
           <Footer />
         </>
       )}

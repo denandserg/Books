@@ -1,11 +1,13 @@
 import cn from 'classnames';
 import React, { useState } from 'react';
 import { ConfigProps, InjectedFormProps } from 'redux-form';
+import useRouter from 'use-react-router';
 
 import { isRequired } from '../../../../utils/validators';
 import Button from '../../../components/Button';
 import EmailField from '../../../containers/EmailField';
 import NameField from '../../../containers/NameField';
+import RoutePaths from '../../../routes/paths';
 import enhance from './enhance';
 import sm from './styles.module.scss';
 
@@ -29,7 +31,20 @@ export default UserForm;
 function _UserForm(props: _Props) {
   const [isRegistration, setIsRegistration] = useState(false);
 
-  const { pristine, handleSubmit, invalid } = props;
+  const { history } = useRouter();
+
+  const { pristine, handleSubmit, invalid, reset } = props;
+
+  const handleChangeForm = () => {
+    if (isRegistration) {
+      history.push(RoutePaths.SignIn._());
+      setIsRegistration(!isRegistration);
+    } else {
+      reset();
+      history.push(RoutePaths.Registration._());
+      setIsRegistration(!isRegistration);
+    }
+  };
 
   return (
     <div className={cn(sm.UserForm)}>
@@ -55,6 +70,7 @@ function _UserForm(props: _Props) {
                 name="password"
                 validate={isRequired}
                 label="Password"
+                type="password"
               />
             </div>
 
@@ -70,7 +86,7 @@ function _UserForm(props: _Props) {
             <Button
               variant="primary"
               className={sm.UserForm_SaveBtn}
-              onClick={() => setIsRegistration(!isRegistration)}
+              onClick={handleChangeForm}
             >
               {isRegistration ? 'Authorization' : 'Registration'}
             </Button>

@@ -5,14 +5,14 @@ import asFormField from '../../../hocs/asFormField';
 import withErrorBoundary from '../../../hocs/withErrorBoundary';
 import {
   composeValidators,
-  hasLengthBetween,
   hasNoDigits,
   hasNoSuccessiveSpaces,
   isNotEndWithSpace,
-  isNotStartWithSpace
+  isNotStartWithSpace,
+  isNumberGreaterThan
 } from '../../../utils/validators';
 
-const MAX_PASSWORD_LENGTH = 20;
+const MIN_PASSWORD_LENGTH = 6;
 
 export const validatePasswordField = composeValidators(
   isNotStartWithSpace,
@@ -20,7 +20,7 @@ export const validatePasswordField = composeValidators(
   hasNoSuccessiveSpaces,
   hasNoDigits,
 
-  hasLengthBetween(1, MAX_PASSWORD_LENGTH)
+  isNumberGreaterThan(MIN_PASSWORD_LENGTH)
 );
 
 const enhance = <I, O>(comp: ComponentType<I>) =>
@@ -31,7 +31,7 @@ const enhance = <I, O>(comp: ComponentType<I>) =>
       validate: [validatePasswordField]
     }),
     withProps({
-      maxLength: MAX_PASSWORD_LENGTH
+      minLength: MIN_PASSWORD_LENGTH
     })
   )(comp);
 

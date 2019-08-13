@@ -9,7 +9,7 @@ const isNotStartWithSpace = createValidator(
     return /^\s/.test(String(value));
   },
   {
-    key: 'IS_NOT_START_WITH_SPACE'
+    key: 'Should not start with space'
   }
 );
 
