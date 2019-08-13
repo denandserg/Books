@@ -1,0 +1,16 @@
+@import "~node-sass/../../src/assets/styles/variables/index";
+
+.WrappedControl {
+  .WrappedControl_Label {
+  }
+
+  .WrappedControl_ErrorMsg {
+    margin-top: 0.25em;
+  }
+
+  &.WrappedControl__Error {
+    .WrappedControl_Label {
+      color: $colorCoral;
+    }
+  }
+}

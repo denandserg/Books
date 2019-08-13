@@ -1,34 +1,48 @@
-import React, { useState } from 'react';
+import app from 'firebase';
+import React from 'react';
+import { RouteChildrenProps } from 'react-router';
+import useRouter from 'use-react-router';
 
-import Button from '../../components/Button';
-import Loader from '../../components/Loader';
-import Logo from '../../components/Logo';
+import config from '../../../api/firebase/config';
+import CommonPageLayout from '../../containers/CommonPageLayout';
+import Footer from '../../containers/Footer';
+import Header from '../../containers/Header';
+import RoutePaths from '../../routes/paths';
 import enhance from './enhance';
-import sm from './styles.module.scss';
+import UserForm, { User } from './UserForm';
 
-interface Props {}
+interface OuterProps {}
+
+type Props = RouteChildrenProps;
 
 export type SignInPageProps = Props;
 
-const SignInPage = enhance<Props, Props>(_SignInPage);
+const SignInPage = enhance<Props, OuterProps>(_SignInPage);
 
 export default SignInPage;
 
-function _SignInPage(props: Props) {
-  const [isLoading, setIsLoading] = useState(false);
+const fireBase = app.initializeApp(config);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <div className={sm.SignInPage}>
-      <div className={sm.SignInPage_Logo}>
-        <Logo />
-      </div>
-      <div className={sm.SignInPage_Trigger}>
-        <Button variant="primary" onClick={() => setIsLoading(!isLoading)}>
-          Sign In
-        </Button>
-      </div>
-    </div>
+function _SignInPage(props: Props) {
+  const { history } = useRouter();
+
+  async function login(data: User) {
+    await fireBase
+      .auth()
+      .signInWithEmailAndPassword(data.email, data.password)
+      .then(OK => (OK ? history.push(RoutePaths._()) : null));
+  }
+
+  return (
+    <CommonPageLayout
+      customMainWrap={Boolean(true)}
+      renderMainContent={() => (
+        <>
+          <Header />
+          <UserForm form="USER_FORM" onSubmit={values => login(values)} />
+          <Footer />
+        </>
+      )}
+    />
   );
 }

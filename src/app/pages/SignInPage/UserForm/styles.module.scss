@@ -1,0 +1,30 @@
+@import '../../../../assets/styles/variables/index';
+
+.UserForm {
+  .UserForm_Title {
+    font-weight: bold;
+    font-size: 28px;
+    font-family: $fontSamsungSharpSansBold;
+  }
+
+  .UserForm_Content {
+    display: flex;
+    padding-top: toem(20);
+
+    .UserForm_PhotoPreview {
+      font-size: 2em;
+    }
+
+    .UserForm_Info {
+      .UserForm_Field {
+        min-width: toem(272);
+        margin-top: toem(30);
+      }
+    }
+
+    .UserForm_SaveBtn {
+      width: 100%;
+      margin-top: toem(32);
+    }
+  }
+}
