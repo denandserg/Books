@@ -10,19 +10,18 @@ import enhance from './enhance';
 import sm from './styles.module.scss';
 
 export interface User {
-  id: number;
-  email?: string;
-  login?: string;
+  email: string;
+  password: string;
 }
 
 interface _Props extends Props, InjectedFormProps {}
 
 interface Props {
-  user?: User;
+  user: User;
   onEditFinish?: () => void;
 }
 
-export type UserFormProps = ConfigProps<_Props> & Props;
+export type UserFormProps = ConfigProps<User>;
 
 const UserForm = enhance<_Props, UserFormProps>(_UserForm);
 
@@ -42,10 +41,6 @@ function _UserForm(props: _Props) {
         <div className={sm.UserForm_Content}>
           <div className={sm.UserForm_Info}>
             <div className={sm.UserForm_Field}>
-              <NameField name="login" validate={isRequired} label="Login" />
-            </div>
-
-            <div className={sm.UserForm_Field}>
               <EmailField validate={isRequired} />
             </div>
 
@@ -54,6 +49,14 @@ function _UserForm(props: _Props) {
                 <EmailField validate={isRequired} label="Confirm Email" />
               </div>
             ) : null}
+
+            <div className={sm.UserForm_Field}>
+              <NameField
+                name="password"
+                validate={isRequired}
+                label="Password"
+              />
+            </div>
 
             <Button
               disabled={pristine || invalid}

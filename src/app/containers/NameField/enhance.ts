@@ -12,26 +12,26 @@ import {
   isNotStartWithSpace
 } from '../../../utils/validators';
 
-const MAX_LOGIN_LENGTH = 20;
+const MAX_PASSWORD_LENGTH = 20;
 
-export const validateLoginField = composeValidators(
+export const validatePasswordField = composeValidators(
   isNotStartWithSpace,
   isNotEndWithSpace,
   hasNoSuccessiveSpaces,
   hasNoDigits,
 
-  hasLengthBetween(1, MAX_LOGIN_LENGTH)
+  hasLengthBetween(1, MAX_PASSWORD_LENGTH)
 );
 
 const enhance = <I, O>(comp: ComponentType<I>) =>
   compose<I, O>(
-    setDisplayName('Login'),
+    setDisplayName('Password'),
     withErrorBoundary,
     asFormField({
-      validate: [validateLoginField]
+      validate: [validatePasswordField]
     }),
     withProps({
-      maxLength: MAX_LOGIN_LENGTH
+      maxLength: MAX_PASSWORD_LENGTH
     })
   )(comp);
 

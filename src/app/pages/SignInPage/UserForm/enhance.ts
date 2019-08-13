@@ -14,7 +14,7 @@ const enhance = <I, O>(comp: ComponentType<I>) =>
     }),
     withLoader<InjectedFormProps<{}>, {}>({
       checker: ({ submitting }) => submitting,
-      isOverlay: true
+      isOverlay: false
     })
   )(comp);
 
