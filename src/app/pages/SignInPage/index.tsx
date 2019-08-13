@@ -23,18 +23,27 @@ export default SignInPage;
 function _SignInPage(props: Props) {
   const { history } = useRouter();
 
+  let error: Error;
+
   async function login(data: User) {
     await fireBase
       .auth()
       .signInWithEmailAndPassword(data.email, data.password)
-      .then(OK => (OK ? history.push(RoutePaths._()) : null));
+      .then(OK => (OK ? history.push(RoutePaths._()) : null))
+      .catch(e => {
+        error = e;
+      });
   }
 
   async function registration(data: User) {
-    await fireBase
-      .auth()
-      .createUserWithEmailAndPassword(data.email, data.password)
-      .then(OK => (OK ? history.push(RoutePaths._()) : null));
+    try {
+      await fireBase
+        .auth()
+        .createUserWithEmailAndPassword(data.email, data.password)
+        .then(OK => (OK ? history.push(RoutePaths._()) : null));
+    } catch (e) {
+      error = e;
+    }
   }
 
   return (
@@ -45,6 +54,7 @@ function _SignInPage(props: Props) {
           <Header />
           <UserForm
             form="USER_FORM"
+            onSubmitFail={() => error}
             onSubmit={values =>
               history.location.pathname === RoutePaths.SignIn._()
                 ? login(values)
