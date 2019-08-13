@@ -22,7 +22,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "noImplicitAny": false
   },
   "include": [
     "src/**/*",

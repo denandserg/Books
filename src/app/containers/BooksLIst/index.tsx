@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import cn from 'classnames';
+import React from 'react';
+import { useObject } from 'react-firebase-hooks/database';
+import uuid from 'uuid';
 
-// import { useObject } from 'react-firebase-hooks/database';
-// import { useDownloadURL } from 'react-firebase-hooks/storage';
-// import { getBooks, getCovers } from '../../../api';
-// import Loader from '../../components/Loader';
+import { getBooksRef } from '../../../api';
+import Loader from '../../components/Loader';
+import BooksListItem from '../BookListItem';
+import { Book } from './constants';
 import enhance from './enhance';
+import sm from './styles.module.scss';
 
 interface Props {}
 
@@ -13,29 +17,18 @@ const BooksList = enhance<Props, Props>(_BooksList);
 export default BooksList;
 
 function _BooksList(props: Props) {
-  const [isLoading] = useState(true);
+  const [snapshot = { val: () => {} }, loading, error] = useObject(
+    getBooksRef()
+  );
+  const books = snapshot.val();
 
-  // const [value = {val: () => {}}, loading, error] = useObject(getBooks());
-  // console.log('1111111', value.val(), loading, error)
-  // const [url, loadingI, errorI] = useDownloadURL(getCovers('A1jxuAgQ+JL.jpg'));
-
-  // console.log('2222222', url, loadingI, errorI)
-
-  // // const [books, setBooks] = useState([]);
-  //
-  // console.log(isLoading, setIsLoading)
-  // //
-  // // const books = useSelector(BooksSelector.getBooks);
-  // //
-  //
-  // const booksC = useEffect(() => {
-  //   // const result = getBooks();
-  //   console.log('1111111111')
-  //   getBooks().on('value', (snapshot: any) => {
-  //     console.log('snapshot', snapshot.val())
-  //   });
-  //
-  // }, []);
-  // console.log('000000000', booksC);
-  return isLoading ? <span>Hello World!</span> : <div>BooksList</div>;
+  return loading || error ? (
+    <Loader />
+  ) : (
+    <div className={cn(sm.BooksList)}>
+      {books.map((book: Book, i: number) => (
+        <BooksListItem key={uuid()} book={book} />
+      ))}
+    </div>
+  );
 }
