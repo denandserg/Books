@@ -1,0 +1,91 @@
+@import "../../../assets/styles/variables/index";
+
+$borderWidth: 1px;
+$padding: 0.875em;
+
+.Input {
+  .Input_PreIcon,
+  .Input_PostIcon {
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+  }
+
+  .Input_PreIcon {
+    left: $padding;
+  }
+
+  .Input_PostIcon {
+    right: $padding;
+  }
+
+  .Input_Native {
+    display: block;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: toem(48);
+    margin: 0;
+    padding: 0 $padding;
+
+    font-size: 1em;
+
+    background-color: $colorWhite;
+    border: $borderWidth solid $colorSilverSand;
+    border-radius: $borderRadius;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &::placeholder {
+      color: $colorOsloGray;
+    }
+
+    &[type=number]::-webkit-inner-spin-button,
+    &[type=number]::-webkit-outer-spin-button {
+      margin: 0;
+
+      -webkit-appearance: none;
+    }
+
+    &:focus,
+    &:active {
+      padding: calc(#{$padding} - #{$borderWidth});
+
+      border-color: $colorEasternBlue;
+      border-width: $borderWidth * 2;
+
+      outline: none;
+    }
+
+    &.Input_Native__HasPre {
+      padding-left: $padding * 3;
+
+      &:focus,
+      &:active {
+        padding-left: calc(#{$padding} * 3 - #{$borderWidth});
+      }
+    }
+
+    &.Input_Native__HasPost {
+      padding-right: $padding * 3;
+
+      &:focus,
+      &:active {
+        padding-right: calc(#{$padding} * 3 - #{$borderWidth});
+      }
+    }
+  }
+
+  &.Input__Error {
+    .Input_Native {
+      border-color: coral;
+    }
+  }
+}

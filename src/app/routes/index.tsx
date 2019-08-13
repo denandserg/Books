@@ -13,6 +13,10 @@ export default function AppRoutes() {
         <main className={sm.AppRoutes_Main}>
           <Switch>
             <Route path={RoutePaths.SignIn._()} render={() => <SignInPage />} />
+            <Route
+              path={RoutePaths.Registration._()}
+              render={() => <SignInPage />}
+            />
             <Route path={RoutePaths._()} render={() => <CommonPage />} />
             <Redirect to={RoutePaths._()} />
           </Switch>
