@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 import { ConfigProps, InjectedFormProps } from 'redux-form';
 
 import { isRequired } from '../../../../utils/validators';
@@ -12,8 +12,7 @@ import sm from './styles.module.scss';
 export interface User {
   id: number;
   email?: string;
-  firstName?: string;
-  lastName?: string;
+  login?: string;
 }
 
 interface _Props extends Props, InjectedFormProps {}
@@ -23,48 +22,38 @@ interface Props {
   onEditFinish?: () => void;
 }
 
-
-export type UserFormFields = Omit<User, 'avatar'> & {
-  avatar?: string;
-};
-
-export type UserFormProps = ConfigProps<UserFormFields, Props> & Props;
+export type UserFormProps = ConfigProps<_Props> & Props;
 
 const UserForm = enhance<_Props, UserFormProps>(_UserForm);
 
 export default UserForm;
 function _UserForm(props: _Props) {
+  const [isRegistration, setIsRegistration] = useState(false);
+
   const { pristine, handleSubmit, invalid } = props;
 
   return (
     <div className={cn(sm.UserForm)}>
-      <span className={sm.UserForm_Title}>User Profile</span>
+      <span className={sm.UserForm_Title}>
+        {isRegistration ? 'Registration Form' : 'Login Form'}
+      </span>
 
       <form onSubmit={handleSubmit}>
         <div className={sm.UserForm_Content}>
           <div className={sm.UserForm_Info}>
-
-
-
             <div className={sm.UserForm_Field}>
-              <NameField
-                name="firstName"
-                validate={isRequired}
-                label="First Name"
-              />
-            </div>
-
-            <div className={sm.UserForm_Field}>
-              <NameField
-                name="lastName"
-                validate={isRequired}
-                label="Last Name"
-              />
+              <NameField name="login" validate={isRequired} label="Login" />
             </div>
 
             <div className={sm.UserForm_Field}>
               <EmailField validate={isRequired} />
             </div>
+
+            {isRegistration ? (
+              <div className={sm.UserForm_Field}>
+                <EmailField validate={isRequired} label="Confirm Email" />
+              </div>
+            ) : null}
 
             <Button
               disabled={pristine || invalid}
@@ -72,7 +61,15 @@ function _UserForm(props: _Props) {
               variant="primary"
               className={sm.UserForm_SaveBtn}
             >
-              Registration
+              Sign In
+            </Button>
+
+            <Button
+              variant="primary"
+              className={sm.UserForm_SaveBtn}
+              onClick={() => setIsRegistration(!isRegistration)}
+            >
+              {isRegistration ? 'Authorization' : 'Registration'}
             </Button>
           </div>
         </div>

@@ -1,15 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-}
-
 @keyframes loader {
   0% {
     transform: rotate(0deg);

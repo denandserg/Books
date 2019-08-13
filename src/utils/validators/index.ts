@@ -82,7 +82,7 @@ export function combineValidators<VM = { [key: string]: Validator }>(
 }
 
 export const isRequired = createValidator(value => !value && value !== 0, {
-  key: 'IS_REQUIRED'
+  key: 'Is required'
 });
 
 export const isNumeric = createValidator(

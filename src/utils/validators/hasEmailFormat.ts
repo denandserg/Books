@@ -12,7 +12,7 @@ const hasEmailFormat = createValidator(
     return !EMAIL_REGEX.test(value.toString());
   },
   {
-    key: 'HAS_EMAIL_FORMAT'
+    key: 'Does not match email format'
   }
 );
 

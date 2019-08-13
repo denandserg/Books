@@ -20,7 +20,6 @@ export default function FieldError(props: _Props) {
 function useTranslatedErrMsg(
   formError: string | { key: string; options: { [key: string]: unknown } }
 ) {
-
   if (!formError) {
     return '';
   }
@@ -31,9 +30,9 @@ function useTranslatedErrMsg(
     return keyCandidate ? [keyCandidate] : formError;
   }
 
-  return addLocalePrefix(formError.key) + formError.options;
+  return addLocalePrefix(formError.key);
 
   function addLocalePrefix(key: string) {
-    return `ERRORS.VALIDATION.${key}`;
+    return key;
   }
 }

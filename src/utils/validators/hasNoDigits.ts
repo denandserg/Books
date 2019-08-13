@@ -10,7 +10,7 @@ const hasNoDigits = createValidator(
 
     return regExp.test(String(value));
   },
-  { key: 'HAS_NO_DIGITS' }
+  { key: 'Should not contain digits' }
 );
 
 export default hasNoDigits;

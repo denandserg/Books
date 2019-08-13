@@ -5,7 +5,7 @@ import asFormField from '../../../hocs/asFormField';
 import withErrorBoundary from '../../../hocs/withErrorBoundary';
 import { composeValidators, hasEmailFormat } from '../../../utils/validators';
 
-export const validateLastNameField = composeValidators(hasEmailFormat);
+export const validateEmail = composeValidators(hasEmailFormat);
 
 const enhance = <I, O>(comp: ComponentType<I>) =>
   compose<I, O>(
@@ -14,7 +14,7 @@ const enhance = <I, O>(comp: ComponentType<I>) =>
     asFormField({
       name: 'email',
       label: 'Email',
-      validate: [validateLastNameField]
+      validate: [validateEmail]
     })
   )(comp);
 
