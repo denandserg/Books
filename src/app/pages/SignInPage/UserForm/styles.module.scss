@@ -28,5 +28,11 @@
       width: 100%;
       margin-top: toem(32);
     }
+
+    .UserForm_ContentError {
+      padding-top: toem(20);
+
+      color: $colorCoral;
+    }
   }
 }
