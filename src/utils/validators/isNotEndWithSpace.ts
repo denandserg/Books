@@ -1,7 +1,7 @@
 import { createValidator } from './index';
 
 const isNotEndWithSpace = createValidator(value => /\s$/.test(String(value)), {
-  key: 'IS_NOT_END_WITH_SPACE'
+  key: 'Should not end with space'
 });
 
 export default isNotEndWithSpace;

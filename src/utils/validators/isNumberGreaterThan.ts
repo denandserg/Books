@@ -7,13 +7,10 @@ const isNumberGreaterThan = (minVal: number) =>
         return false;
       }
 
-      return parseFloat(String(value)) < minVal;
+      return (value as string).length < minVal;
     },
     {
-      key: 'IS_NOT_LESS_THAN',
-      options: {
-        minVal
-      }
+      key: 'Should not be less than 6 symbols'
     }
   );
 
