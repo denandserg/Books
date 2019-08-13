@@ -16,7 +16,9 @@ export interface User {
   password: string;
 }
 
-interface _Props extends Props, InjectedFormProps {}
+interface _Props extends Props, InjectedFormProps {
+  onSubmitFail: Function;
+}
 
 interface Props {
   user: User;
@@ -33,7 +35,9 @@ function _UserForm(props: _Props) {
 
   const { history } = useRouter();
 
-  const { pristine, handleSubmit, invalid, reset } = props;
+  const { pristine, handleSubmit, invalid, reset, onSubmitFail } = props;
+
+  const messageError = onSubmitFail();
 
   const handleChangeForm = () => {
     if (isRegistration) {
@@ -73,6 +77,12 @@ function _UserForm(props: _Props) {
                 type="password"
               />
             </div>
+
+            {messageError && (
+              <div className={sm.UserForm_ContentError}>
+                {messageError.message}
+              </div>
+            )}
 
             <Button
               disabled={pristine || invalid}
