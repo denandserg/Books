@@ -4,6 +4,5 @@ import config from './config';
 
 firebase.initializeApp(config);
 
-const databaseRef = firebase.database().ref();
-
-export default databaseRef;
+export const database = firebase.database();
+export const storage = firebase.storage();
