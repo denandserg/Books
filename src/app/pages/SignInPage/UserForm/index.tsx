@@ -80,7 +80,7 @@ function _UserForm(props: _Props) {
               variant="primary"
               className={sm.UserForm_SaveBtn}
             >
-              Sign In
+              {isRegistration ? 'Registration' : 'Sign In'}
             </Button>
 
             <Button
