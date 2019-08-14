@@ -10,6 +10,9 @@ const RoutePaths = {
   },
   Favourite: {
     _: pathCreator('/favourite')
+  },
+  Book: {
+    _: pathCreator('/book/:id')
   }
 };
 

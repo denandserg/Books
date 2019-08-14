@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
+import BookPage from '../pages/BookPage';
 import CommonPage from '../pages/CommonPage';
 import FavouritePage from '../pages/FavouritePage';
 import SignInPage from '../pages/SignInPage';
@@ -17,6 +18,7 @@ export default function AppRoutes() {
               path={RoutePaths.Favourite._()}
               render={() => <FavouritePage />}
             />
+            <Route path={RoutePaths.Book._()} render={() => <BookPage />} />
             <Route path={RoutePaths.SignIn._()} render={() => <SignInPage />} />
             <Route
               path={RoutePaths.Registration._()}
