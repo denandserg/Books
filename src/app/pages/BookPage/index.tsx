@@ -8,6 +8,14 @@ import RoutePaths from '../../routes/paths';
 import enhance from './enhance';
 import sm from './styles.module.scss';
 
+// interface MatchParams {
+//   id: number;
+// }
+
+// interface Props extends RouteComponentProps<MatchParams> {
+//
+// }
+
 interface Props {}
 
 const BookPage = enhance<Props, Props>(_BookPage);
@@ -15,6 +23,12 @@ const BookPage = enhance<Props, Props>(_BookPage);
 export default BookPage;
 
 function _BookPage(props: Props) {
+  // const {
+  //   match: { params }
+  // } = props;
+  //
+  // console.log('Page', params.id);
+
   return (
     <CommonPageLayout
       customMainWrap={Boolean(true)}
