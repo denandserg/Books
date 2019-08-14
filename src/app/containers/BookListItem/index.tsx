@@ -1,7 +1,6 @@
 import camelize from 'camelize';
 import cn from 'classnames';
-import React from 'react';
-import { useDownloadURL } from 'react-firebase-hooks/storage';
+import React, { useState } from 'react';
 
 import { getCoverRef } from '../../../api';
 import Loader from '../../components/Loader';
@@ -20,11 +19,16 @@ export default BooksListItem;
 function _BooksListItem(props: Props) {
   const { book } = props;
   const { picId, title, description, author } = camelize(book);
-  const [value, loading, error] = useDownloadURL(getCoverRef(picId, 'jpg'));
+  const [url, setUrl] = useState(null);
+  getCoverRef(picId, 'jpg')
+    .getDownloadURL()
+    .then(response => {
+      setUrl(response);
+    });
 
   return (
     <div className={cn(sm.BooksListItem)}>
-      {loading || error ? <Loader /> : <img src={value} alt="cower" />}
+      {!url ? <Loader /> : <img src={url} alt="cower" />}
       <div className={cn(sm.BooksListItem_Body)}>
         <h2>{title}</h2>
         <p>{description}</p>

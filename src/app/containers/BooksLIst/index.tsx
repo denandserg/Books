@@ -17,10 +17,8 @@ const BooksList = enhance<Props, Props>(_BooksList);
 export default BooksList;
 
 function _BooksList(props: Props) {
-  const [snapshot = { val: () => {} }, loading, error] = useObject(
-    getBooksRef()
-  );
-  const books = snapshot.val();
+  const [snapshot, loading, error] = useObject(getBooksRef());
+  const books = snapshot ? snapshot.val() : [];
 
   return loading || error ? (
     <Loader />
