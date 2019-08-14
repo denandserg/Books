@@ -26,6 +26,7 @@
     "@types/uuid": "^3.4.5",
     "antd": "^3.21.4",
     "axios": "^0.18.0",
+    "camelize": "^1.0.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.4.0",
     "firebase": "^6.3.5",

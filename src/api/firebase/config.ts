@@ -3,7 +3,7 @@ const config = {
   authDomain: 'books-d92f6.firebaseapp.com',
   databaseURL: 'https://books-d92f6.firebaseio.com',
   projectId: 'books-d92f6',
-  storageBucket: '',
+  storageBucket: 'books-d92f6.appspot.com',
   messagingSenderId: '146002380207',
   appId: '1:146002380207:web:b4d533292d2d0284'
 };

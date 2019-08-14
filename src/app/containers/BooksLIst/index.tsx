@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
+import cn from 'classnames';
+import React from 'react';
+import { useObject } from 'react-firebase-hooks/database';
+import uuid from 'uuid';
 
-import Button from '../../components/Button';
+import { getBooksRef } from '../../../api';
 import Loader from '../../components/Loader';
-import Logo from '../../components/Logo';
-import sm from '../../pages/SignInPage/styles.module.scss';
+import BooksListItem from '../BookListItem';
+import { Book } from './constants';
 import enhance from './enhance';
+import sm from './styles.module.scss';
 
 interface Props {}
 
-const BoksList = enhance<Props, Props>(_BoksList);
+const BooksList = enhance<Props, Props>(_BooksList);
 
-export default BoksList;
+export default BooksList;
 
-function _BoksList(props: Props) {
-  const [isLoading, setIsLoading] = useState(false);
+function _BooksList(props: Props) {
+  const [snapshot = { val: () => {} }, loading, error] = useObject(
+    getBooksRef()
+  );
+  const books = snapshot.val();
 
-  return isLoading ? (
+  return loading || error ? (
     <Loader />
   ) : (
-    <div className={sm.SignInPage}>
-      <div className={sm.SignInPage_Logo}>
-        <Logo />
-      </div>
-      <div className={sm.SignInPage_Trigger}>
-        <Button variant="primary" onClick={() => setIsLoading(!isLoading)}>
-          Sign In
-        </Button>
-      </div>
+    <div className={cn(sm.BooksList)}>
+      {books.map((book: Book) => (
+        <BooksListItem key={uuid()} book={book} />
+      ))}
     </div>
   );
 }

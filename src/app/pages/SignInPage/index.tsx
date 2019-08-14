@@ -1,9 +1,8 @@
-import app from 'firebase';
 import React from 'react';
 import { RouteChildrenProps } from 'react-router';
 import useRouter from 'use-react-router';
 
-import config from '../../../api/firebase/config';
+import fireBase from '../../../api/firebase';
 import CommonPageLayout from '../../containers/CommonPageLayout';
 import Footer from '../../containers/Footer';
 import Header from '../../containers/Header';
@@ -20,8 +19,6 @@ export type SignInPageProps = Props;
 const SignInPage = enhance<Props, OuterProps>(_SignInPage);
 
 export default SignInPage;
-
-const fireBase = app.initializeApp(config);
 
 function _SignInPage(props: Props) {
   const { history } = useRouter();
