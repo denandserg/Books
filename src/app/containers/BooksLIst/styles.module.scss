@@ -1,6 +1,7 @@
 @import '../../../assets/styles/variables/index';
 
 .BooksList {
+  display: flex;
   width: 100%;
   padding: toem(20);
 }
