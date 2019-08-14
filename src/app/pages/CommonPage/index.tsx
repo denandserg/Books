@@ -1,9 +1,10 @@
-import cn from 'classnames';
 import React from 'react';
 
 import BookList from '../../containers/BooksLIst';
+import CommonPageLayout from '../../containers/CommonPageLayout';
+import Footer from '../../containers/Footer';
+import Header from '../../containers/Header';
 import enhance from './enhance';
-import sm from './styles.module.scss';
 
 interface Props {}
 
@@ -13,8 +14,15 @@ export default CommonPage;
 
 function _CommonPage(props: Props) {
   return (
-    <div className={cn(sm.CommonPage)}>
-      <BookList />
-    </div>
+    <CommonPageLayout
+      customMainWrap={Boolean(true)}
+      renderMainContent={() => (
+        <>
+          <Header />
+          <BookList />
+          <Footer />
+        </>
+      )}
+    />
   );
 }

@@ -27,7 +27,7 @@ function _Header(props: HeaderProps) {
       </div>
 
       <div className={sm.Header_RightGroup}>
-        <Button iconPre="user" variant="borderless" linkTo={RoutePaths._()}>
+        <Button iconPre="user" variant="borderless" linkTo={RoutePaths.SignIn._()}>
           Sign In
         </Button>
       </div>

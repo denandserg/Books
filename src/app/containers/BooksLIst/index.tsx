@@ -26,7 +26,7 @@ function _BooksList(props: Props) {
     <Loader />
   ) : (
     <div className={cn(sm.BooksList)}>
-      {books.map((book: Book, i: number) => (
+      {books.map((book: Book) => (
         <BooksListItem key={uuid()} book={book} />
       ))}
     </div>
