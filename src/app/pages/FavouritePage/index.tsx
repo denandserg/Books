@@ -14,7 +14,7 @@ function _FavouritePage(props: Props) {
   return (
     <CommonPageLayout
       customMainWrap={Boolean(true)}
-      renderMainContent={() => <BookList />}
+      renderMainContent={() => <BookList favourite={Boolean(true)} />}
     />
   );
 }

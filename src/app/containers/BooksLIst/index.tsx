@@ -1,25 +1,57 @@
 import cn from 'classnames';
+import * as firebase from 'firebase';
 import React from 'react';
 import { useObject } from 'react-firebase-hooks/database';
+import { useSelector } from 'react-redux';
 import uuid from 'uuid';
 
-import { getBooksRef } from '../../../api';
+import { getBooksRef, getFavouritesBooksRef } from '../../../api';
 import tf from '../../../assets/styles/typefaces.module.scss';
+import ApiSelectors from '../../../redux/selectors';
 import Loader from '../../components/Loader';
 import BooksListItem from '../BookListItem';
 import { Book } from './constants';
 import enhance from './enhance';
 import sm from './styles.module.scss';
 
-interface Props {}
+interface Props {
+  favourite: boolean;
+}
 
 const BooksList = enhance<Props, Props>(_BooksList);
 
 export default BooksList;
 
 function _BooksList(props: Props) {
-  const [snapshot, loading, error] = useObject(getBooksRef());
+  const isSigned = useSelector(ApiSelectors.isSignedIn);
+
+  const { favourite } = props;
+
+  const [image] = useObject(getBooksRef());
+
+  const [snapshot, loading, error] = useObject(
+    favourite ? getFavouritesBooksRef() : getBooksRef()
+  );
   const books = snapshot ? snapshot.val() : [];
+
+  function viewFavouritedBooks(): React.ReactNode {
+    if (!isSigned) {
+      return null;
+    }
+    // @ts-ignore
+    const uidCurrentUser = firebase.auth().currentUser.uid;
+
+    const currentUserFavouriteBooksId = books[uidCurrentUser];
+
+    const allBooks = image ? image.val() : [];
+
+    const favouriteBooks = allBooks.filter(book =>
+      currentUserFavouriteBooksId.some(fav => fav === book.id)
+    );
+    return favouriteBooks.map((book: Book) => (
+      <BooksListItem key={uuid()} id={book.id} book={book} />
+    ));
+  }
 
   return loading || error ? (
     <Loader />
@@ -27,9 +59,11 @@ function _BooksList(props: Props) {
     <div className={sm.BooksList}>
       <div className={cn(tf.pageHeader)}>Golden Books Catalogue</div>
       <div className={cn(sm.BooksList_Content)}>
-        {books.map((book: Book, i: number) => (
-          <BooksListItem key={uuid()} id={i} book={book} />
-        ))}
+        {favourite
+          ? viewFavouritedBooks()
+          : books.map((book: Book) => (
+              <BooksListItem key={uuid()} id={book.id} book={book} />
+            ))}
       </div>
     </div>
   );
