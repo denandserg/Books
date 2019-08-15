@@ -45,12 +45,16 @@ function _BooksList(props: Props) {
 
     const allBooks = image ? image.val() : [];
 
-    const favouriteBooks = allBooks.filter(book =>
-      currentUserFavouriteBooksId.some(fav => fav === book.id)
-    );
-    return favouriteBooks.map((book: Book) => (
-      <BooksListItem key={uuid()} id={book.id} book={book} />
-    ));
+    const favouriteBooks = currentUserFavouriteBooksId
+      ? allBooks.filter(book =>
+          currentUserFavouriteBooksId.some(fav => fav === book.id)
+        )
+      : null;
+    return favouriteBooks
+      ? favouriteBooks.map((book: Book) => (
+          <BooksListItem key={uuid()} id={book.id} book={book} />
+        ))
+      : null;
   }
 
   return loading || error ? (

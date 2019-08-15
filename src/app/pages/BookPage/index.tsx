@@ -25,9 +25,14 @@ export default BookPage;
 function _BookPage(props: _Props) {
   const [snapshot, loading, error] = useObject(getBooksRef());
   const allBooks = snapshot ? snapshot.val() : [];
-  const bookId = parseInt(window.location.pathname.slice(-1), 10);
+  const bookId = parseInt(
+    window.location.pathname.substr(
+      window.location.pathname.lastIndexOf('/') + 1
+    ),
+    10
+  );
 
-  const currentBook = allBooks[bookId];
+  const currentBook = allBooks.filter(book => book.id === bookId.toString());
 
   return loading || error ? (
     <Loader />
@@ -42,7 +47,7 @@ function _BookPage(props: _Props) {
             </Button>
           </div>
           <div className={cn(sm.BookPage_Body)}>
-            <BooksListItem key={uuid()} id={bookId} book={currentBook} />
+            <BooksListItem key={uuid()} id={bookId} book={currentBook[0]} />
           </div>
         </div>
       )}

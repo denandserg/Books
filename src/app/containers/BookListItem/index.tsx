@@ -39,7 +39,7 @@ function _BooksListItem(props: Props) {
       {!url ? <Loader /> : <img src={url} alt="cower" />}
       {isSigned && (
         <div className={sm.BooksListItem_ToggleFavorite}>
-          <FavoriteSign />
+          <FavoriteSign bookId={id} />
         </div>
       )}
       <div className={cn(sm.BooksListItem_Body)}>
