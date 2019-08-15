@@ -27,7 +27,7 @@ function _BooksList(props: Props) {
     <div className={sm.BooksList}>
       <div className={cn(tf.pageHeader)}>Golden Books Catalogue</div>
       <div className={cn(sm.BooksList_Content)}>
-        {books.map((book: Book , i:number) => (
+        {books.map((book: Book, i: number) => (
           <BooksListItem key={uuid()} id={i} book={book} />
         ))}
       </div>
