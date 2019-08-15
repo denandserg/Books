@@ -1,7 +1,13 @@
 @import '../../../assets/styles/variables/index';
 
 .BooksList {
-  display: flex;
-  width: 100%;
-  padding: toem(20);
+  height: 100%;
+  padding: 3em;
+
+  .BooksList_Content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: toem(20);
+  }
 }
