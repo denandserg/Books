@@ -38,6 +38,8 @@ function _Header(props: Props) {
     }
   }
 
+  console.log(firebase.auth().currentUser)
+
   return (
     <div className={cn(sm.Header)}>
       <div className={sm.Header_LeftGroup}>
