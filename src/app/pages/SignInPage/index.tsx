@@ -1,11 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { RouteChildrenProps } from 'react-router';
 import useRouter from 'use-react-router';
 
 import fireBase from '../../../api/firebase';
+import { API_ACTION_TYPES } from '../../../redux/actions';
 import CommonPageLayout from '../../containers/CommonPageLayout';
-import Footer from '../../containers/Footer';
-import Header from '../../containers/Header';
 import RoutePaths from '../../routes/paths';
 import enhance from './enhance';
 import UserForm, { User } from './UserForm';
@@ -23,12 +23,15 @@ export default SignInPage;
 function _SignInPage(props: Props) {
   const { history } = useRouter();
 
+  const dispatch = useDispatch();
+
   let error: Error;
 
   async function login(data: User) {
     await fireBase
       .auth()
       .signInWithEmailAndPassword(data.email, data.password)
+      .then(() => dispatch({ type: API_ACTION_TYPES.SIGNED_IN }))
       .then(OK => (OK ? history.push(RoutePaths._()) : null))
       .catch(e => {
         error = e;
@@ -40,6 +43,7 @@ function _SignInPage(props: Props) {
       await fireBase
         .auth()
         .createUserWithEmailAndPassword(data.email, data.password)
+        .then(() => dispatch({ type: API_ACTION_TYPES.SIGNED_IN }))
         .then(OK => (OK ? history.push(RoutePaths._()) : null));
     } catch (e) {
       error = e;
@@ -51,7 +55,6 @@ function _SignInPage(props: Props) {
       customMainWrap={Boolean(true)}
       renderMainContent={() => (
         <>
-          <Header />
           <UserForm
             form="USER_FORM"
             onSubmitFail={() => error}
@@ -61,7 +64,6 @@ function _SignInPage(props: Props) {
                 : registration(values)
             }
           />
-          <Footer />
         </>
       )}
     />

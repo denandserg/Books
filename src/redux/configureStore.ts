@@ -11,7 +11,9 @@ import rootSaga from './rootSaga';
 
 export const initialRootState = {};
 
-export default function configureStore(initialState = { ...initialRootState }) {
+export const store = function configureStore(
+  initialState = { ...initialRootState }
+) {
   return createStore(
     createRootReducer({ history }),
     initialState,
@@ -23,7 +25,7 @@ export default function configureStore(initialState = { ...initialRootState }) {
       )
     )
   );
-}
+};
 
 declare global {
   interface Window {
