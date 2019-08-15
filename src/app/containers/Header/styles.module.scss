@@ -33,6 +33,11 @@
     align-self: stretch;
     justify-content: flex-end;
 
+    .Header_RightGroupTitle {
+      margin-right: 10em;
+      padding: 0;
+    }
+
     .Header_RightGroupButton {
       min-width: toem(140);
       margin-right: toem(20);

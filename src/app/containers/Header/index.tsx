@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import useRouter from 'use-react-router';
 
+import tf from '../../../assets/styles/typefaces.module.scss';
 import { API_ACTION_TYPES } from '../../../redux/actions';
 import Button from '../../components/Button';
 import Logo from '../../components/Logo';
@@ -38,7 +39,7 @@ function _Header(props: Props) {
     }
   }
 
-  console.log(firebase.auth().currentUser)
+  const userName = firebase.auth().currentUser;
 
   return (
     <div className={cn(sm.Header)}>
@@ -52,14 +53,19 @@ function _Header(props: Props) {
 
       <div className={sm.Header_RightGroup}>
         {isSign && (
-          <Button
-            iconPre="heart-filled"
-            variant="standard"
-            className={sm.Header_RightGroupButton}
-            onClick={() => history.push(RoutePaths.Favourite._())}
-          >
-            Favourite
-          </Button>
+          <>
+            <div className={cn(tf.pageHeader, sm.Header_RightGroupTitle)}>
+              Hi, {userName && userName.displayName}
+            </div>
+            <Button
+              iconPre="heart-filled"
+              variant="standard"
+              className={sm.Header_RightGroupButton}
+              onClick={() => history.push(RoutePaths.Favourite._())}
+            >
+              Favourite
+            </Button>
+          </>
         )}
         <Button iconPre="user" variant="standard" onClick={handleClickLogout}>
           {isSign ? 'Log out' : 'Sign In'}

@@ -7,15 +7,15 @@ import { isRequired } from '../../../../utils/validators';
 import Button from '../../../components/Button';
 import EmailField from '../../../containers/EmailField';
 import NameField from '../../../containers/NameField';
+import PasswordField from '../../../containers/PasswordField';
 import RoutePaths from '../../../routes/paths';
 import enhance from './enhance';
 import sm from './styles.module.scss';
-import PasswordField from '../../../containers/PasswordField';
 
 export interface User {
   email: string;
   password: string;
-  name: string
+  name: string;
 }
 
 interface _Props extends Props, InjectedFormProps {
