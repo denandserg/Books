@@ -5,25 +5,34 @@ import asFormField from '../../../hocs/asFormField';
 import withErrorBoundary from '../../../hocs/withErrorBoundary';
 import {
   composeValidators,
+  hasNoDigits,
   hasNoSuccessiveSpaces,
   isNotEndWithSpace,
-  isNotStartWithSpace
+  isNotStartWithSpace,
+  isNumberGreaterThan
 } from '../../../utils/validators';
 
-export const validateNameField = composeValidators(
+const MIN_PASSWORD_LENGTH = 6;
+
+export const validatePasswordField = composeValidators(
   isNotStartWithSpace,
   isNotEndWithSpace,
-  hasNoSuccessiveSpaces
+  hasNoSuccessiveSpaces,
+  hasNoDigits,
+
+  isNumberGreaterThan(MIN_PASSWORD_LENGTH)
 );
 
 const enhance = <I, O>(comp: ComponentType<I>) =>
   compose<I, O>(
-    setDisplayName('Name'),
+    setDisplayName('Password'),
     withErrorBoundary,
     asFormField({
-      validate: [validateNameField]
+      validate: [validatePasswordField]
     }),
-    withProps({})
+    withProps({
+      minLength: MIN_PASSWORD_LENGTH
+    })
   )(comp);
 
 export default enhance;

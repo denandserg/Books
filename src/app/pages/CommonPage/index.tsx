@@ -16,7 +16,7 @@ function _CommonPage(props: Props) {
       customMainWrap={Boolean(true)}
       renderMainContent={() => (
         <>
-          <BookList />
+          <BookList favourite={Boolean(false)} />
         </>
       )}
     />

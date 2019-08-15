@@ -7,6 +7,7 @@ import { isRequired } from '../../../../utils/validators';
 import Button from '../../../components/Button';
 import EmailField from '../../../containers/EmailField';
 import NameField from '../../../containers/NameField';
+import PasswordField from '../../../containers/PasswordField';
 import RoutePaths from '../../../routes/paths';
 import enhance from './enhance';
 import sm from './styles.module.scss';
@@ -14,6 +15,7 @@ import sm from './styles.module.scss';
 export interface User {
   email: string;
   password: string;
+  name: string;
 }
 
 interface _Props extends Props, InjectedFormProps {
@@ -65,12 +67,17 @@ function _UserForm(props: _Props) {
 
             {isRegistration ? (
               <div className={sm.UserForm_Field}>
-                <EmailField validate={isRequired} label="Confirm Email" />
+                <NameField
+                  name="name"
+                  validate={isRequired}
+                  label="Name"
+                  type="text"
+                />
               </div>
             ) : null}
 
             <div className={sm.UserForm_Field}>
-              <NameField
+              <PasswordField
                 name="password"
                 validate={isRequired}
                 label="Password"

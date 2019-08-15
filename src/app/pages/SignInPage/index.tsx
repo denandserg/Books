@@ -1,3 +1,4 @@
+import * as firebase from 'firebase';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { RouteChildrenProps } from 'react-router';
@@ -27,6 +28,11 @@ function _SignInPage(props: Props) {
 
   let error: Error;
 
+  async function setDisplayName(data: User) {
+    // @ts-ignore
+    await firebase.auth().currentUser.updateProfile({ displayName: data.name });
+  }
+
   async function login(data: User) {
     await fireBase
       .auth()
@@ -43,6 +49,7 @@ function _SignInPage(props: Props) {
       await fireBase
         .auth()
         .createUserWithEmailAndPassword(data.email, data.password)
+        .then(() => setDisplayName(data))
         .then(() => dispatch({ type: API_ACTION_TYPES.SIGNED_IN }))
         .then(OK => (OK ? history.push(RoutePaths._()) : null));
     } catch (e) {
