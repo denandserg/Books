@@ -49,7 +49,17 @@ function _Header(props: Props) {
       </div>
 
       <div className={sm.Header_RightGroup}>
-        <Button iconPre="user" variant="borderless" onClick={handleClickLogout}>
+        {isSign && (
+          <Button
+            iconPre="heart-filled"
+            variant="standard"
+            className={sm.Header_RightGroupButton}
+            onClick={() => history.push(RoutePaths.Favourite._())}
+          >
+            Favourite
+          </Button>
+        )}
+        <Button iconPre="user" variant="standard" onClick={handleClickLogout}>
           {isSign ? 'Log out' : 'Sign In'}
         </Button>
       </div>

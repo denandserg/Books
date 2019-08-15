@@ -7,6 +7,9 @@ const RoutePaths = {
   },
   Registration: {
     _: pathCreator('/register')
+  },
+  Favourite: {
+    _: pathCreator('/favourite')
   }
 };
 

@@ -4,6 +4,7 @@ import { useObject } from 'react-firebase-hooks/database';
 import uuid from 'uuid';
 
 import { getBooksRef } from '../../../api';
+import tf from '../../../assets/styles/typefaces.module.scss';
 import Loader from '../../components/Loader';
 import BooksListItem from '../BookListItem';
 import { Book } from './constants';
@@ -23,10 +24,13 @@ function _BooksList(props: Props) {
   return loading || error ? (
     <Loader />
   ) : (
-    <div className={cn(sm.BooksList)}>
-      {books.map((book: Book) => (
-        <BooksListItem key={uuid()} book={book} />
-      ))}
+    <div className={sm.BooksList}>
+      <div className={cn(tf.pageHeader)}>Golden Books Catalogue</div>
+      <div className={cn(sm.BooksList_Content)}>
+        {books.map((book: Book) => (
+          <BooksListItem key={uuid()} book={book} />
+        ))}
+      </div>
     </div>
   );
 }

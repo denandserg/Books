@@ -32,5 +32,10 @@
     align-items: center;
     align-self: stretch;
     justify-content: flex-end;
+
+    .Header_RightGroupButton {
+      min-width: toem(140);
+      margin-right: toem(20);
+    }
   }
 }
