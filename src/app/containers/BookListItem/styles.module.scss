@@ -1,6 +1,8 @@
 @import '../../../assets/styles/variables/index';
 
 .BooksListItem {
+  position: relative;
+
   display: flex;
   width: toem(600);
   padding: toem(15);
@@ -10,6 +12,12 @@
   &:hover {
     border-radius: toem(5);
     box-shadow: 0 0 toem(10) rgba(0, 0, 0, 0.3);
+  }
+
+  .BooksListItem_ToggleFavorite {
+    position: absolute;
+    top: 2em;
+    left: 2em;
   }
 
   img {

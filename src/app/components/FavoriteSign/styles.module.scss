@@ -1,0 +1,12 @@
+@import "../../../assets/styles/variables/index";
+
+.FavoriteSign {
+  color: $colorWhite;
+  font-size: 1.5em;
+  text-shadow: 0 0 7px $almostBlack;
+
+  &.FavoriteSign__Added {
+    color: $colorBgnPrimary;
+    text-shadow: none;
+  }
+}
