@@ -1,6 +1,9 @@
 @import '../../../assets/styles/variables/index';
 
 .Footer {
+  position: fixed;
+  top: 95vh;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,6 +59,9 @@
       .Footer_RightGroupItem {
         display: flex;
         align-items: center;
+
+        outline: none;
+        cursor: pointer;
 
         &::before {
           display: block;

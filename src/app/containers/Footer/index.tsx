@@ -30,7 +30,13 @@ function _Footer(props: FooterProps) {
           </Button>
         </div>
         <div className={cn(sm.Footer_RightGroup)}>
-          <div className={sm.Footer_RightGroupItem}>Contact Us</div>
+          <Button
+            clean
+            iconPre="arrow-top-square"
+            variant="linklike"
+            className={sm.Footer_RightGroupItem}
+            onClick={() => window.scrollTo(0, 0)}
+          />
         </div>
       </div>
     </div>
