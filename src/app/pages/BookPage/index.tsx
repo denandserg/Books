@@ -30,6 +30,9 @@ function _BookPage(props: _Props) {
   const allBooks = snapshot ? snapshot.val() : [];
 
   function getFavouriteBooks() {
+    if (!firebase.auth().currentUser) {
+      return [];
+    }
     // @ts-ignore
     const uidCurrentUser = firebase.auth().currentUser.uid;
 
