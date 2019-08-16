@@ -1,11 +1,12 @@
 import { Icon } from 'antd';
 import cn from 'classnames';
+import * as firebase from 'firebase';
 import React from 'react';
 import { useObject } from 'react-firebase-hooks/database';
 import { RouteComponentProps } from 'react-router';
 import uuid from 'uuid';
 
-import { getBooksRef } from '../../../api';
+import { getBooksRef, getFavouritesBooksRef } from '../../../api';
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
 import BooksListItem from '../../containers/BookListItem';
@@ -24,7 +25,24 @@ export default BookPage;
 
 function _BookPage(props: _Props) {
   const [snapshot, loading, error] = useObject(getBooksRef());
+  const [snapshotFav] = useObject(getFavouritesBooksRef());
+  const booksFav = snapshotFav ? snapshotFav.val() : [];
   const allBooks = snapshot ? snapshot.val() : [];
+
+  function getFavouriteBooks() {
+    // @ts-ignore
+    const uidCurrentUser = firebase.auth().currentUser.uid;
+
+    const currentUserFavouriteBooksId = booksFav[uidCurrentUser];
+
+    const favouriteBooks = currentUserFavouriteBooksId
+      ? allBooks.filter(book =>
+          currentUserFavouriteBooksId.some(fav => fav === book.id)
+        )
+      : [];
+    return favouriteBooks;
+  }
+
   const bookId = parseInt(
     window.location.pathname.substr(
       window.location.pathname.lastIndexOf('/') + 1
@@ -47,7 +65,18 @@ function _BookPage(props: _Props) {
             </Button>
           </div>
           <div className={cn(sm.BookPage_Body)}>
-            <BooksListItem key={uuid()} id={bookId} book={currentBook[0]}  isFavouriteBook={false}/>
+            <BooksListItem
+              key={uuid()}
+              id={bookId}
+              book={currentBook[0]}
+              isFavouriteBook={
+                getFavouriteBooks().length > 0
+                  ? getFavouriteBooks().some(
+                      item => item.id === currentBook[0].id
+                    )
+                  : false
+              }
+            />
           </div>
         </div>
       )}

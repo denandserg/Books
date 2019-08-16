@@ -31,15 +31,18 @@ export default function FavoriteSign(props: _Props) {
     const prevFavouritesBooks =
       snapshot && snapshot.val()[curUserUid] ? snapshot.val()[curUserUid] : [];
 
-    if (prevFavouritesBooks && prevFavouritesBooks.includes(bookId)) {
-      const index = prevFavouritesBooks.indexOf(bookId);
+    if (
+      prevFavouritesBooks &&
+      prevFavouritesBooks.includes(bookId.toString())
+    ) {
+      const index = prevFavouritesBooks.indexOf(bookId.toString());
       if (index > -1) {
         prevFavouritesBooks.splice(index, 1);
       }
-      prevFavouritesBooks.filter(item => item !== bookId);
+      prevFavouritesBooks.filter(item => item !== bookId.toString());
       setFavouritesBooksRef(curUserUid, prevFavouritesBooks);
     } else {
-      prevFavouritesBooks.push(bookId);
+      prevFavouritesBooks.push(bookId.toString());
       setFavouritesBooksRef(curUserUid, prevFavouritesBooks);
     }
   }
@@ -48,7 +51,11 @@ export default function FavoriteSign(props: _Props) {
     <Button
       clean
       onClick={createHandlerFavourites}
-      className={isFavourite?cn(sm.FavoriteSign, sm.FavoriteSign__Added) : cn(sm.FavoriteSign)}
+      className={
+        isFavourite
+          ? cn(sm.FavoriteSign, sm.FavoriteSign__Added)
+          : cn(sm.FavoriteSign)
+      }
     >
       <Icon name={isFavourite ? 'heart-filled' : 'heart'} />
     </Button>
