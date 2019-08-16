@@ -47,7 +47,7 @@ function _BookPage(props: _Props) {
             </Button>
           </div>
           <div className={cn(sm.BookPage_Body)}>
-            <BooksListItem key={uuid()} id={bookId} book={currentBook[0]} />
+            <BooksListItem key={uuid()} id={bookId} book={currentBook[0]}  isFavouriteBook={false}/>
           </div>
         </div>
       )}

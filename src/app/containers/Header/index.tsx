@@ -50,22 +50,22 @@ function _Header(props: Props) {
           </div>
         </Button>
       </div>
+      {isSign && (
+        <div className={cn(tf.pageHeader, sm.Header_RightGroupTitle)}>
+          Hi, {userName && userName.displayName}
+        </div>
+      )}
 
       <div className={sm.Header_RightGroup}>
         {isSign && (
-          <>
-            <div className={cn(tf.pageHeader, sm.Header_RightGroupTitle)}>
-              Hi, {userName && userName.displayName}
-            </div>
-            <Button
-              iconPre="heart-filled"
-              variant="standard"
-              className={sm.Header_RightGroupButton}
-              onClick={() => history.push(RoutePaths.Favourite._())}
-            >
-              Favourite
-            </Button>
-          </>
+          <Button
+            iconPre="heart-filled"
+            variant="standard"
+            className={sm.Header_RightGroupButton}
+            onClick={() => history.push(RoutePaths.Favourite._())}
+          >
+            Favourite
+          </Button>
         )}
         <Button iconPre="user" variant="standard" onClick={handleClickLogout}>
           {isSign ? 'Log out' : 'Sign In'}

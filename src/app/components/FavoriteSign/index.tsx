@@ -10,6 +10,7 @@ import sm from './styles.module.scss';
 
 interface _Props extends HTMLAttributes<HTMLDivElement> {
   bookId: number;
+  isFavourite: boolean;
 }
 
 export type FavoriteSignProps = _Props;
@@ -18,6 +19,8 @@ export default function FavoriteSign(props: _Props) {
   const { bookId } = props;
 
   const [snapshot] = useObject(getFavouritesBooksRef());
+
+  const { isFavourite } = props;
 
   async function createHandlerFavourites(
     event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
@@ -45,9 +48,9 @@ export default function FavoriteSign(props: _Props) {
     <Button
       clean
       onClick={createHandlerFavourites}
-      className={cn(sm.FavoriteSign)}
+      className={isFavourite?cn(sm.FavoriteSign, sm.FavoriteSign__Added) : cn(sm.FavoriteSign)}
     >
-      <Icon name="heart" />
+      <Icon name={isFavourite ? 'heart-filled' : 'heart'} />
     </Button>
   );
 }

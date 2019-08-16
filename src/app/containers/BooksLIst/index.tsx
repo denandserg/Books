@@ -52,7 +52,7 @@ function _BooksList(props: Props) {
       : null;
     return favouriteBooks
       ? favouriteBooks.map((book: Book) => (
-          <BooksListItem key={uuid()} id={book.id} book={book} />
+          <BooksListItem key={uuid()} id={book.id} book={book} isFavouriteBook={Boolean(true)}/>
         ))
       : null;
   }
@@ -66,7 +66,12 @@ function _BooksList(props: Props) {
         {favourite
           ? viewFavouritedBooks()
           : books.map((book: Book) => (
-              <BooksListItem key={uuid()} id={book.id} book={book} />
+              <BooksListItem
+                key={uuid()}
+                id={book.id}
+                book={book}
+                isFavouriteBook={false}
+              />
             ))}
       </div>
     </div>

@@ -16,6 +16,7 @@ import sm from './styles.module.scss';
 interface Props {
   book: Book;
   id: number;
+  isFavouriteBook: boolean;
 }
 
 const BooksListItem = enhance<Props, Props>(_BooksListItem);
@@ -25,7 +26,7 @@ export default BooksListItem;
 function _BooksListItem(props: Props) {
   const isSigned = useSelector(ApiSelectors.isSignedIn);
 
-  const { book, id } = props;
+  const { book, id, isFavouriteBook } = props;
   const { picId, title, description, author } = camelize(book);
   const [url, setUrl] = useState(null);
   getCoverRef(picId, 'jpg')
@@ -39,7 +40,7 @@ function _BooksListItem(props: Props) {
       {!url ? <Loader /> : <img src={url} alt="cower" />}
       {isSigned && (
         <div className={sm.BooksListItem_ToggleFavorite}>
-          <FavoriteSign bookId={id} />
+          <FavoriteSign isFavourite={isFavouriteBook} bookId={id}/>
         </div>
       )}
       <div className={cn(sm.BooksListItem_Body)}>
