@@ -27,32 +27,42 @@ function _BooksList(props: Props) {
 
   const { favourite } = props;
 
-  const [image] = useObject(getBooksRef());
+  const [snapshot, loading, error] = useObject(getBooksRef());
+  const [snapshotFav] = useObject(getFavouritesBooksRef());
 
-  const [snapshot, loading, error] = useObject(
-    favourite ? getFavouritesBooksRef() : getBooksRef()
-  );
   const books = snapshot ? snapshot.val() : [];
+  const booksFav = snapshotFav ? snapshotFav.val() : [];
+
+  const getFavouriteBooks = () => {
+    if (!firebase.auth().currentUser) {
+      return [];
+    }
+    // @ts-ignore
+    const uidCurrentUser = firebase.auth().currentUser.uid;
+
+    const currentUserFavouriteBooksId = booksFav[uidCurrentUser];
+
+    const favouriteBooks = currentUserFavouriteBooksId
+      ? books.filter(book =>
+          currentUserFavouriteBooksId.some(fav => fav === book.id)
+        )
+      : [];
+    return favouriteBooks;
+  };
 
   function viewFavouritedBooks(): React.ReactNode {
     if (!isSigned) {
       return null;
     }
-    // @ts-ignore
-    const uidCurrentUser = firebase.auth().currentUser.uid;
 
-    const currentUserFavouriteBooksId = books[uidCurrentUser];
-
-    const allBooks = image ? image.val() : [];
-
-    const favouriteBooks = currentUserFavouriteBooksId
-      ? allBooks.filter(book =>
-          currentUserFavouriteBooksId.some(fav => fav === book.id)
-        )
-      : null;
-    return favouriteBooks
-      ? favouriteBooks.map((book: Book) => (
-          <BooksListItem key={uuid()} id={book.id} book={book} />
+    return getFavouriteBooks()
+      ? getFavouriteBooks().map((book: Book) => (
+          <BooksListItem
+            key={uuid()}
+            id={book.id}
+            book={book}
+            isFavouriteBook={Boolean(true)}
+          />
         ))
       : null;
   }
@@ -66,7 +76,16 @@ function _BooksList(props: Props) {
         {favourite
           ? viewFavouritedBooks()
           : books.map((book: Book) => (
-              <BooksListItem key={uuid()} id={book.id} book={book} />
+              <BooksListItem
+                key={uuid()}
+                id={book.id}
+                book={book}
+                isFavouriteBook={
+                  getFavouriteBooks().length > 0
+                    ? getFavouriteBooks().some(item => item.id === book.id)
+                    : false
+                }
+              />
             ))}
       </div>
     </div>

@@ -19,7 +19,6 @@
 
   .Header_LeftGroup {
     display: inline-flex;
-    flex-grow: 1;
     align-items: center;
 
     .Header_LeftGroupLogo {
@@ -27,16 +26,16 @@
     }
   }
 
+  .Header_RightGroupTitle {
+    margin-right: 10em;
+    padding-bottom: 0;
+  }
+
   .Header_RightGroup {
     display: inline-flex;
     align-items: center;
     align-self: stretch;
     justify-content: flex-end;
-
-    .Header_RightGroupTitle {
-      margin-right: 10em;
-      padding: 0;
-    }
 
     .Header_RightGroupButton {
       min-width: toem(140);
