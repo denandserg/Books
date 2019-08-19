@@ -7,7 +7,8 @@
   .BooksList_Content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
-    padding: toem(20);
+    padding: toem(20) toem(80);
   }
 }

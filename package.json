@@ -64,9 +64,7 @@
     "lint:scripts:check": "eslint --format friendly \"src/**/*.{ts,tsx}\"",
     "lint:scripts:fix": "yarn run lint:scripts:check --fix",
     "lint:styles:check": "stylelint --custom-formatter=node_modules/stylelint-formatter-pretty \"src/**/*.{scss,css}\"",
-    "lint:styles:fix": "yarn run lint:styles:check --fix",
-    "storybook:start": "start-storybook -p 6006",
-    "storybook:build": "build-storybook"
+    "lint:styles:fix": "yarn run lint:styles:check --fix"
   },
   "husky": {
     "hooks": {
@@ -96,14 +94,6 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.0.11",
-    "@storybook/addon-info": "^5.0.11",
-    "@storybook/addon-links": "^5.0.11",
-    "@storybook/addons": "^5.0.11",
-    "@storybook/react": "^5.0.11",
-    "@types/storybook__addon-actions": "^3.4.2",
-    "@types/storybook__addon-info": "^4.1.1",
-    "@types/storybook__react": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "awesome-typescript-loader": "^5.2.1",

@@ -71,7 +71,9 @@ function _BooksList(props: Props) {
     <Loader />
   ) : (
     <div className={sm.BooksList}>
-      <div className={cn(tf.pageHeader)}>Golden Books Catalogue</div>
+      <div className={cn(tf.pageHeader)}>
+        {favourite ? 'Favourite Books' : 'Golden Books Catalogue'}
+      </div>
       <div className={cn(sm.BooksList_Content)}>
         {favourite
           ? viewFavouritedBooks()
