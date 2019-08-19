@@ -1,14 +1,7 @@
-export { default as isNumber } from './isNumber';
-export { default as isNumberLessThan } from './isNumberLessThan';
-export {
-  default as isDataUriFileSizeLessThan
-} from './isDataUriFileSizeLessThan';
-export { default as isDataUriMimeType } from './isDataUriMimeType';
 export { default as hasNoSuccessiveSpaces } from './hasNoSuccessiveSpaces';
 export { default as isNotEndWithSpace } from './isNotEndWithSpace';
 export { default as isNotStartWithSpace } from './isNotStartWithSpace';
 export { default as isNumberGreaterThan } from './isNumberGreaterThan';
-export { default as isNumberBetween } from './isNumberBetween';
 export { default as hasEmailFormat } from './hasEmailFormat';
 export { default as hasNoDigits } from './hasNoDigits';
 
