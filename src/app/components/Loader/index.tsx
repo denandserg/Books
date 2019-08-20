@@ -10,12 +10,12 @@ export interface LoaderProps {
 export default function Loader(props: LoaderProps) {
   const { noBgn = false } = props;
   return (
-    <div className={cn(sm.loader, { [sm.loader__WithBgn]: !noBgn })}>
-      <div className={sm.loader_Content}>
-        <span className={sm.span1} />
-        <span className={sm.span2} />
-        <span className={sm.span3} />
-        <span className={sm.span4} />
+    <div className={cn(sm.Loader, { [sm.Loader__WithBgn]: !noBgn })}>
+      <div className={sm.Loader_Content}>
+        <span className={sm.Loader_Ring1} />
+        <span className={sm.Loader_Ring2} />
+        <span className={sm.Loader_Ring3} />
+        <span className={sm.Loader_Ring4} />
       </div>
     </div>
   );
