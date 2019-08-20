@@ -67,7 +67,11 @@ function _BooksList(props: Props) {
       : null;
   }
 
-  return loading || error ? (
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  return loading ? (
     <Loader />
   ) : (
     <div className={sm.BooksList}>
